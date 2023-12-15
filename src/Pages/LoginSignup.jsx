@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const StarRating = ({ value, onChange }) => {
   const stars = Array.from({ length: 5 }, (_, index) => index + 1);
@@ -8,7 +8,7 @@ const StarRating = ({ value, onChange }) => {
       {stars.map((star) => (
         <span
           key={star}
-          style={{ cursor: 'pointer', color: star <= value ? 'gold' : 'gray' }}
+          style={{ cursor: "pointer", color: star <= value ? "gold" : "gray" }}
           onClick={() => onChange(star)}
         >
           &#9733; {/* Unicode character for a solid star */}
@@ -19,10 +19,10 @@ const StarRating = ({ value, onChange }) => {
 };
 
 const LoginSignup = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [isLoggedIn, setLoggedIn] = useState(false);
-  const [review, setReview] = useState({ name: '', rating: 0, comment: '' });
+  const [review, setReview] = useState({ name: "", rating: 0, comment: "" });
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -33,15 +33,13 @@ const LoginSignup = () => {
   };
 
   const handleLogin = () => {
-    if (email !== '' && password !== '') {
+    if (email !== "" && password !== "") {
       setLoggedIn(true);
     }
   };
 
   const handleReviewSubmit = () => {
-    
-    console.log('Review submitted:', review);
-    
+    console.log("Review submitted:", review);
   };
 
   const handleNameChange = (e) => {
@@ -57,18 +55,26 @@ const LoginSignup = () => {
   };
 
   return (
-    <div style={{ maxWidth: '600px', margin: 'auto', padding: '20px' }}>
+    <div style={{ maxWidth: "600px", margin: "auto", padding: "100px" }}>
       {!isLoggedIn ? (
         <div>
           <h2>Login</h2>
-          <form style={{ display: 'flex', flexDirection: 'column' }}>
+          <form style={{ display: "flex", flexDirection: "column" }}>
             <label>Email:</label>
             <input type="email" value={email} onChange={handleEmailChange} />
 
             <label>Password:</label>
-            <input type="password" value={password} onChange={handlePasswordChange} />
+            <input
+              type="password"
+              value={password}
+              onChange={handlePasswordChange}
+            />
 
-            <button type="button" onClick={handleLogin} style={{ marginTop: '10px' }}>
+            <button
+              type="button"
+              onClick={handleLogin}
+              style={{ marginTop: "10px" }}
+            >
               Login
             </button>
           </form>
@@ -76,9 +82,13 @@ const LoginSignup = () => {
       ) : (
         <div>
           <h2>Give a Review</h2>
-          <form style={{ display: 'flex', flexDirection: 'column' }}>
+          <form style={{ display: "flex", flexDirection: "column" }}>
             <label>Name:</label>
-            <input type="text" value={review.name} onChange={handleNameChange} />
+            <input
+              type="text"
+              value={review.name}
+              onChange={handleNameChange}
+            />
 
             <label>Rating:</label>
             <StarRating value={review.rating} onChange={handleRatingChange} />
@@ -86,7 +96,11 @@ const LoginSignup = () => {
             <label>Comment:</label>
             <textarea value={review.comment} onChange={handleCommentChange} />
 
-            <button type="button" onClick={handleReviewSubmit} style={{ marginTop: '10px' }}>
+            <button
+              type="button"
+              onClick={handleReviewSubmit}
+              style={{ marginTop: "10px" }}
+            >
               Submit Review
             </button>
           </form>

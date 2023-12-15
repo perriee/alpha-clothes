@@ -1,32 +1,20 @@
-import React from 'react'
-import './Hero.css'
-import hand_icon from '../Assets/hand_icon.png'
-import arrow from '../Assets/arrow.png'
-import hero_image from '../Assets/hero_image.png'
+import React from "react";
+import "./Hero.css";
+import { Carousel } from "flowbite-react";
+import banner_alpha from "../Assets/gambar-fix/banner-alpha.png";
+import banner_korsa from "../Assets/gambar-fix/banner-korsa.png";
+import banner_totebag from "../Assets/gambar-fix/banner-totebag.png";
 
 const Hero = () => {
   return (
-    <div className='hero'>
-        <div className="hero-left">
-            <h2>NEW ARRIVALS ONLY</h2>
-            <div>
-                <div className="hero-hand-icon">
-                    <p>new</p>
-                    <img src={hand_icon} alt="" />
-                </div>
-                <p>collection</p>
-                <p>for everyone</p>
-            </div>
-            <div className="hero-latest-btn">
-                <div>Latest Collection</div>
-                <img src={arrow} alt="" />
-            </div>
-        </div>
-        <div className="hero-right">
-            <img src={hero_image} alt="" />
-        </div>
+    <div className="h-56 sm:h-64 xl:h-80 2xl:h-96 min-h-screen z-20">
+      <Carousel>
+        <img src={banner_alpha} alt="..." />
+        <img src={banner_korsa} alt="..." />
+        <img src={banner_totebag} alt="..." />
+      </Carousel>
     </div>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;

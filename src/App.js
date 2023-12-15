@@ -1,5 +1,4 @@
 
-import './App.css';
 import Navbar from './Components/Navbar/Navbar';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import Home from './Pages/Home';
@@ -7,6 +6,7 @@ import HomeCategory from './Pages/HomeCategory';
 import Product from './Pages/Product';
 import Cart from './Pages/Cart';
 import LoginSignup from './Pages/LoginSignup';
+import About from './Pages/About';
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
       <Navbar/>
       <Routes>
         <Route path='/' element={<Home/>}/>
-        <Route path='/about' element={<Home/>}/>
+        <Route path='/about' element={<About/>}/>
         <Route path='/shop' element={<HomeCategory category="shop"/>}/>
         <Route path='/contact' element={<Home/>}/>
         <Route path="/product" element={<Product/>}>

@@ -1,33 +1,23 @@
-import p1_img from './product_1.png'
-import p2_img from './product_2.png'
-import p3_img from './product_3.png'
-import p4_img from './product_4.png'
+import p1_img from '../Assets/gambar-fix/kaos.png'
+import p2_img from '../Assets/gambar-fix/korsa.png'
+import p3_img from '../Assets/gambar-fix/lanyard.png'
 
 let data_product = [
   {
     id:1,
-    name:"Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
+    name:"Kaos",
+    description: "Kaos berkualitas tinggi dengan gaya modern dan kenyamanan luar biasa untuk gaya sehari-hari Anda.",
     image:p1_img,
-    new_price:50.00,
-    old_price:80.50,
   },
   {id:2,
-    name:"Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
+    name:"Korsa",
+    description: "Aksesori elegan untuk sentuhan gaya yang berkelas, memadukan fungsi dan desain yang menarik.",
     image:p2_img,
-    new_price:85.00,
-    old_price:120.50,
   },
   {id:3,
-    name:"Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
+    name:"Lanyard",
+    description: "Lanyard fungsional dengan desain menarik, cocok untuk kebutuhan sehari-hari dengan gaya.",
     image:p3_img,
-    new_price:60.00,
-    old_price:100.50,
-  },
-  {id:4,
-    name:"Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
-    image:p4_img,
-    new_price:100.00,
-    old_price:150.00,
   },
 ];
 
