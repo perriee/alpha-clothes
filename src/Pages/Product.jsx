@@ -13,7 +13,7 @@ import id_card from "../../src/Components/Assets/gambar-fix/product-idcard.png";
 import hoodie from "../../src/Components/Assets/gambar-fix/product-hoodie.png";
 import Footer from "../Components/Footer/Footer";
 import ProductDetails from "./ProductDetails";
-import DetailsKorsa from "./DetailsKorsa";
+
 
 
 const Product = () => {
