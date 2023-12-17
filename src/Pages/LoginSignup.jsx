@@ -1,28 +1,9 @@
 import React, { useState } from "react";
 
-const StarRating = ({ value, onChange }) => {
-  const stars = Array.from({ length: 5 }, (_, index) => index + 1);
-
-  return (
-    <div>
-      {stars.map((star) => (
-        <span
-          key={star}
-          style={{ cursor: "pointer", color: star <= value ? "gold" : "gray" }}
-          onClick={() => onChange(star)}
-        >
-          &#9733; {/* Unicode character for a solid star */}
-        </span>
-      ))}
-    </div>
-  );
-};
-
 const LoginSignup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoggedIn, setLoggedIn] = useState(false);
-  const [review, setReview] = useState({ name: "", rating: 0, comment: "" });
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -33,77 +14,69 @@ const LoginSignup = () => {
   };
 
   const handleLogin = () => {
-    if (email !== "" && password !== "") {
+    // Simulasi login: Validasi email dan password
+    if (email === "example@email.com" && password === "password123") {
       setLoggedIn(true);
+    } else {
+      alert("Login failed. Please check your credentials.");
     }
   };
 
-  const handleReviewSubmit = () => {
-    console.log("Review submitted:", review);
+  const handleLogout = () => {
+    setLoggedIn(false);
   };
 
-  const handleNameChange = (e) => {
-    setReview({ ...review, name: e.target.value });
-  };
-
-  const handleRatingChange = (value) => {
-    setReview({ ...review, rating: value });
-  };
-
-  const handleCommentChange = (e) => {
-    setReview({ ...review, comment: e.target.value });
+  const handleGoToHome = () => {
+    // Navigasi ke halaman utama setelah logout
+    window.location.href = "/";
   };
 
   return (
-    <div style={{ maxWidth: "600px", margin: "auto", padding: "100px" }}>
+    <div style={{ maxWidth: "600px", margin: "auto", padding: "40px", border: "1px solid #ddd", borderRadius: "8px" }}>
       {!isLoggedIn ? (
         <div>
           <h2>Login</h2>
           <form style={{ display: "flex", flexDirection: "column" }}>
-            <label>Email:</label>
-            <input type="email" value={email} onChange={handleEmailChange} />
+            <label style={{ marginBottom: "8px" }}>Email:</label>
+            <input type="email" value={email} onChange={handleEmailChange} style={{ padding: "8px", marginBottom: "16px", borderRadius: "4px" }} />
 
-            <label>Password:</label>
+            <label style={{ marginBottom: "8px" }}>Password:</label>
             <input
               type="password"
               value={password}
               onChange={handlePasswordChange}
+              style={{ padding: "8px", marginBottom: "16px", borderRadius: "4px" }}
             />
 
             <button
               type="button"
               onClick={handleLogin}
-              style={{ marginTop: "10px" }}
+              style={{ padding: "10px", backgroundColor: "#4CAF50", color: "white", borderRadius: "4px", cursor: "pointer" }}
             >
               Login
             </button>
           </form>
         </div>
       ) : (
-        <div>
-          <h2>Give a Review</h2>
-          <form style={{ display: "flex", flexDirection: "column" }}>
-            <label>Name:</label>
-            <input
-              type="text"
-              value={review.name}
-              onChange={handleNameChange}
-            />
+        <div style={{ textAlign: "center" }}>
+          <h2>Welcome!</h2>
+          <p style={{ fontSize: "1.2em" }}>You are now logged in.</p>
 
-            <label>Rating:</label>
-            <StarRating value={review.rating} onChange={handleRatingChange} />
+          <button
+            type="button"
+            onClick={handleLogout}
+            style={{ padding: "10px", backgroundColor: "#f44336", color: "white", borderRadius: "4px", cursor: "pointer", marginRight: "10px" }}
+          >
+            Logout
+          </button>
 
-            <label>Comment:</label>
-            <textarea value={review.comment} onChange={handleCommentChange} />
-
-            <button
-              type="button"
-              onClick={handleReviewSubmit}
-              style={{ marginTop: "10px" }}
-            >
-              Submit Review
-            </button>
-          </form>
+          <button
+            type="button"
+            onClick={handleGoToHome}
+            style={{ padding: "10px", backgroundColor: "#2196F3", color: "white", borderRadius: "4px", cursor: "pointer" }}
+          >
+            Go to Home
+          </button>
         </div>
       )}
     </div>
