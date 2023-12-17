@@ -1,21 +1,23 @@
 import React, { useState } from 'react';
 import logo from '../Assets/logo.png';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
-  const [menu, setMenu] = useState('Beranda');
-  const [showDropdown, setShowDropdown] = useState(false);
+  const [menu, setMenu] = useState('');
 
-  const toggleDropdown = () => {
-    setShowDropdown(!showDropdown);
-  };
+  const navigate = useNavigate();
 
   return (
-    <div className="flex justify-around p-4 z-10 backdrop-blur-sm font-semibold text-xl">
-      <div className="flex items-center gap-4">
+    <div className="flex justify-around p-4 backdrop-blur-sm text-lg shadow-lg">
+      <div
+        className="flex items-center gap-2 cursor-pointer"
+        onClick={() => {
+          navigate('/');
+        }}
+      >
         <img src={logo} alt="Brand Logo" />
-        <p className="text-2xl">Alpha Clothes</p>
+        <p className="font-semibold text-2xl">Alpha Clothes</p>
       </div>
       <ul className="flex list-none gap-12 items-center">
         <li
@@ -26,7 +28,7 @@ const Navbar = () => {
           <Link style={{ textDecoration: 'none' }} to="/">
             Home
           </Link>{' '}
-          {menu === 'Home' ? <hr /> : <></>}
+          {menu === 'Home' ? <hr className="border-2 border-slate-600 rounded-full" /> : <></>}
         </li>
         <li
           onClick={() => {
@@ -36,7 +38,7 @@ const Navbar = () => {
           <Link style={{ textDecoration: 'none' }} to="/About">
             About
           </Link>
-          {menu === 'About' ? <hr /> : <></>}
+          {menu === 'About' ? <hr className="border-2 border-slate-600 rounded-full" /> : <></>}
         </li>
         <li
           onClick={() => {
@@ -46,30 +48,12 @@ const Navbar = () => {
           <Link style={{ textDecoration: 'none' }} to="/Product">
             Product
           </Link>{' '}
-          {menu === 'Product' ? <hr /> : <></>}
-        </li>
-        <li
-          onClick={toggleDropdown}
-          onMouseLeave={() => setShowDropdown(false)}
-          className="relative"
-        >
-          <span style={{ cursor: 'pointer' }}>Contact</span>
-          {menu === 'Contact' ? <hr /> : <></>}
-          {showDropdown && (
-            <ul className="absolute top-full left-5 bg-white border border-gray-300 py-1 px-4 rounded shadow-md">
-              <li>
-                <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer">
-                  Contact Us
-                </a>
-              </li>
-              {/* Tambahkan opsi dropdown lainnya jika diperlukan */}
-            </ul>
-          )}
+          {menu === 'Product' ? <hr className="border-2 border-slate-600 rounded-full" /> : <></>}
         </li>
       </ul>
       <div className="flex items-center gap-11">
         <Link to="/login">
-          <button className="w-[157px] h-[58px] outline-none border-2 rounded-lg border-slate-600 ">
+          <button className="px-7 py-2 outline-none border-2 rounded-lg border-slate-600 hover:scale-105 transition-all">
             Login
           </button>
         </Link>
