@@ -13,6 +13,7 @@ import id_card from "../../src/Components/Assets/gambar-fix/product-idcard.png";
 import hoodie from "../../src/Components/Assets/gambar-fix/product-hoodie.png";
 import Footer from "../Components/Footer/Footer";
 import ProductDetails from "./ProductDetails";
+import DetailsKorsa from "./DetailsKorsa";
 
 
 const Product = () => {
@@ -147,7 +148,7 @@ const Product = () => {
             />
             <h2 className="text-2xl font-bold">{product.title}</h2>
             <p className="text-xl font-semibold">{product.price}</p>
-            <p className="text-center px-20">{product.description}</p>
+            {/* <p className="text-center px-20">{product.description}</p> */}
             <button
               onClick={() => openDetails(product)}
               className="w-[120px] h-[50px] outline-none border-2 rounded-lg font-medium text-white bg-[#B31312] border-slate-600"

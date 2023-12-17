@@ -74,6 +74,7 @@ const LoginSignup = () => {
               type="button"
               onClick={handleLogin}
               style={{ marginTop: "10px" }}
+              className="rounded-xl "
             >
               Login
             </button>

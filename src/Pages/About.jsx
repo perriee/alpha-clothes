@@ -3,6 +3,7 @@ import about_kaos from "../../src/Components/Assets/gambar-fix/about-kaos.png";
 import about_lanyard from "../../src/Components/Assets/gambar-fix/about-lanyard.png";
 import about_review from "../../src/Components/Assets/gambar-fix/about-review.png";
 import about_korsa from '../../src/Components/Assets/gambar-fix/about-korsa.png'
+import Footer from "../Components/Footer/Footer";
 
 const About = () => {
   return (
@@ -85,6 +86,7 @@ const About = () => {
           </div>
         </div>
       </section>
+      <Footer/>
     </div>
   );
 };
