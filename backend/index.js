@@ -5,7 +5,6 @@ const fs = require('fs');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const path = require('path');
-require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -155,7 +154,7 @@ const saveData = () => {
   fs.writeFileSync('./testimonials.json', JSON.stringify(testimonials, null, 2));
 };
 
-// app.listen(PORT, () => {
-//   console.log(`Server is running on port ${PORT}`);
-// });
-module.exports = app;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
+// module.exports = app;
