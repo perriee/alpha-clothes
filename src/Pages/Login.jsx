@@ -1,34 +1,47 @@
+import axios from 'axios';
 import React, { useState } from 'react';
+import { showErrorToast, showSuccessToast } from '../Helper/ToastHelper';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoggedIn, setLoggedIn] = useState(false);
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
+  const navigate = useNavigate();
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
+  const handleLogin = async (e) => {
+    e.preventDefault();
 
-  const handleLogin = () => {
-    // Simulasi login: Validasi email dan password
-    if (email === 'example@email.com' && password === 'password123') {
-      setLoggedIn(true);
-    } else {
-      alert('Login failed. Please check your credentials.');
+    if (!email) {
+      showErrorToast('Email wajib di isi');
+      return;
     }
-  };
 
-  const handleLogout = () => {
-    setLoggedIn(false);
-  };
+    if (!password) {
+      showErrorToast('Password wajib di isi');
+      return;
+    }
 
-  const handleGoToHome = () => {
-    // Navigasi ke halaman utama setelah logout
-    window.location.href = '/';
+    try {
+      const response = await axios.post('http://localhost:3001/login', {
+        email,
+        password,
+      });
+
+      if (response.status === 200) {
+        const { token } = response.data;
+        localStorage.setItem('token', token);
+        localStorage.setItem('isLoggedIn', 'true');
+        console.log('Login successful');
+        showSuccessToast('Login Berhasil!');
+        setTimeout(() => {
+          navigate('/');
+        }, 2000);
+      }
+    } catch (error) {
+      console.error('Error logging in:', error);
+      showErrorToast(error.message);
+    }
   };
 
   return (
@@ -44,7 +57,8 @@ const Login = () => {
                 LOGIN
               </h1>
             </div>
-            <form className="space-y-4 md:space-y-6" action="#">
+            {/* Form Login */}
+            <form className="space-y-4 md:space-y-6" onSubmit={handleLogin}>
               <div>
                 <label
                   htmlFor="email"
@@ -54,11 +68,13 @@ const Login = () => {
                 </label>
                 <input
                   type="email"
-                  name="email"
                   id="email"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="alpha@clothes.com"
-                  required=""
                 />
               </div>
               <div>
@@ -70,11 +86,13 @@ const Login = () => {
                 </label>
                 <input
                   type="password"
-                  name="password"
                   id="password"
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
                   placeholder="••••••••"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  required=""
                 />
               </div>
               <button

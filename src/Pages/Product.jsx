@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import korsa from '../../src/Components/Assets/gambar-fix/product-korsa.png';
 import kaos from '../../src/Components/Assets/gambar-fix/product-kaos.png';
 import jaket from '../../src/Components/Assets/gambar-fix/product-jaket.png';
@@ -15,6 +15,7 @@ import Footer from '../Components/Footer/Footer';
 import ProductDetails from './ProductDetails';
 import { FaWhatsapp } from 'react-icons/fa';
 import Navbar from '../Components/Navbar/Navbar';
+import axios from 'axios';
 
 const Product = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -137,9 +138,32 @@ const Product = () => {
     closeDetails();
   };
 
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+
+    console.log('token:', token);
+
+    if (token) {
+      axios
+        .get('http://localhost:3001/user', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          setUserData(response.data);
+        })
+        .catch((error) => {
+          console.error('Error fetching user data:', error.message);
+        });
+    }
+  }, []);
+
   return (
     <>
-      <Navbar />
+      <Navbar userData={userData} />
       <div className="flex flex-col pt-10 px-32 bg-slate-50">
         <h1 className="text-5xl font-bold text-center mb-14 tracking-wide text-slate-800 uppercase">
           Yuk Belanja
