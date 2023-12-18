@@ -18,7 +18,7 @@ const About = () => {
 
     if (token) {
       axios
-        .get('https://alpha-clothes.vercel.app/user', {
+        .get('http://localhost:3001/api/user', {
           headers: {
             Authorization: `Bearer ${token}`,
           },

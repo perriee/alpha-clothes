@@ -4,6 +4,7 @@ const cors = require('cors');
 const fs = require('fs');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
@@ -14,6 +15,8 @@ app.use(cors());
 
 let users = [];
 let testimonials = [];
+
+app.use(express.static(path.join(__dirname, '../build')));
 
 // Inisialisasi data pengguna dari file saat server dimulai
 try {
@@ -31,7 +34,7 @@ try {
   console.error('Error reading testimonials data:', error.message);
 }
 
-app.get('/users', (req, res) => {
+app.get('/api/users', (req, res) => {
   try {
     const userData = fs.readFileSync('./users.json', 'utf-8');
     const parsedUsers = JSON.parse(userData);
@@ -42,7 +45,7 @@ app.get('/users', (req, res) => {
   }
 });
 
-app.post('/register', async (req, res) => {
+app.post('/api/register', async (req, res) => {
   const { fullName, email, password } = req.body;
 
   const userExists = users.find((user) => user.email === email);
@@ -61,7 +64,7 @@ app.post('/register', async (req, res) => {
   res.status(201).json({ message: 'User registered successfully' });
 });
 
-app.post('/login', async (req, res) => {
+app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
   const user = users.find((user) => user.email === email);
 
@@ -91,7 +94,7 @@ const authenticateToken = (req, res, next) => {
   });
 };
 
-app.get('/user', authenticateToken, (req, res) => {
+app.get('/api/user', authenticateToken, (req, res) => {
   const user = users.find((u) => u.email === req.user.email);
 
   if (!user) {
@@ -104,7 +107,7 @@ app.get('/user', authenticateToken, (req, res) => {
   });
 });
 
-app.get('/testimonials', (req, res) => {
+app.get('/api/testimonials', (req, res) => {
   try {
     const testimonialsData = fs.readFileSync('./testimonials.json', 'utf-8');
     const parsedTestimonials = JSON.parse(testimonialsData);
@@ -115,7 +118,7 @@ app.get('/testimonials', (req, res) => {
   }
 });
 
-app.post('/testimonial', authenticateToken, (req, res) => {
+app.post('/api/testimonial', authenticateToken, (req, res) => {
   const { rating, text } = req.body;
   const user = req.user;
 
@@ -133,14 +136,14 @@ app.post('/testimonial', authenticateToken, (req, res) => {
   res.status(201).json({ message: 'Testimonial added successfully' });
 });
 
-app.delete('/users', (req, res) => {
+app.delete('/api/users', (req, res) => {
   users = [];
   saveData();
 
   res.status(200).json({ message: 'All users deleted successfully' });
 });
 
-app.delete('/testimonials', authenticateToken, (req, res) => {
+app.delete('/api/testimonials', authenticateToken, (req, res) => {
   testimonials = [];
   saveData();
 

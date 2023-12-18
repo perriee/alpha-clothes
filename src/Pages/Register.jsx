@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { showErrorToast, showSuccessToast } from '../Helper/ToastHelper';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const Register = () => {
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ export const Register = () => {
     }
 
     try {
-      const response = await axios.post('https://alpha-clothes.vercel.app/register', {
+      const response = await axios.post('http://localhost:3001/api/register', {
         fullName,
         email,
         password,
@@ -126,13 +126,7 @@ export const Register = () => {
                 Sign up
               </button>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                Sudah punya akun?{' '}
-                <a
-                  href="/login"
-                  className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                >
-                  Login.
-                </a>
+                Sudah punya akun? <Link to="/login">Login.</Link>
               </p>
             </form>
           </div>

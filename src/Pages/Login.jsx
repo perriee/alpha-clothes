@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { showErrorToast, showSuccessToast } from '../Helper/ToastHelper';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -23,7 +23,7 @@ const Login = () => {
     }
 
     try {
-      const response = await axios.post('https://alpha-clothes.vercel.app/login', {
+      const response = await axios.post('http://localhost:3001/api/login', {
         email,
         password,
       });
@@ -102,90 +102,14 @@ const Login = () => {
                 Sign in
               </button>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                Belum punya akun?{' '}
-                <a
-                  href="/register"
-                  className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                >
-                  Register.
-                </a>
+                Belum punya akun?
+                <Link to="/register">Register.</Link>
               </p>
             </form>
           </div>
         </div>
       </div>
     </section>
-
-    // <div
-    //   style={{
-    //     maxWidth: '600px',
-    //     margin: 'auto',
-    //     padding: '40px',
-    //     border: '1px solid #ddd',
-    //     borderRadius: '8px',
-    //   }}
-    // >
-    //   {!isLoggedIn ? (
-    //     <div>
-    //       <h2>Login</h2>
-    //       <form style={{ display: 'flex', flexDirection: 'column' }}>
-    //         <label style={{ marginBottom: '8px' }}>Email:</label>
-    //         <input
-    //           type="email"
-    //           value={email}
-    //           onChange={handleEmailChange}
-    //           style={{ padding: '8px', marginBottom: '16px', borderRadius: '4px' }}
-    //         />
-
-    //         <label style={{ marginBottom: '8px' }}>Password:</label>
-    //         <input
-    //           type="password"
-    //           value={password}
-    //           onChange={handlePasswordChange}
-    //           style={{ padding: '8px', marginBottom: '16px', borderRadius: '4px' }}
-    //         />
-
-    //         <button type="button" onClick={handleLogin} style={{ marginTop: '10px' }}>
-    //           Login
-    //         </button>
-    //       </form>
-    //     </div>
-    //   ) : (
-    //     <div style={{ textAlign: 'center' }}>
-    //       <h2>Welcome!</h2>
-    //       <p style={{ fontSize: '1.2em' }}>You are now logged in.</p>
-
-    //       <button
-    //         type="button"
-    //         onClick={handleLogout}
-    //         style={{
-    //           padding: '10px',
-    //           backgroundColor: '#f44336',
-    //           color: 'white',
-    //           borderRadius: '4px',
-    //           cursor: 'pointer',
-    //           marginRight: '10px',
-    //         }}
-    //       >
-    //         Logout
-    //       </button>
-
-    //       <button
-    //         type="button"
-    //         onClick={handleGoToHome}
-    //         style={{
-    //           padding: '10px',
-    //           backgroundColor: '#2196F3',
-    //           color: 'white',
-    //           borderRadius: '4px',
-    //           cursor: 'pointer',
-    //         }}
-    //       >
-    //         Go to Home
-    //       </button>
-    //     </div>
-    //   )}
-    // </div>
   );
 };
 
