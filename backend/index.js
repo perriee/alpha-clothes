@@ -155,6 +155,7 @@ const saveData = () => {
   fs.writeFileSync('./testimonials.json', JSON.stringify(testimonials, null, 2));
 };
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Server is running on port ${PORT}`);
+// });
+module.exports = app;

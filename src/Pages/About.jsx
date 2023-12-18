@@ -18,7 +18,7 @@ const About = () => {
 
     if (token) {
       axios
-        .get('http://localhost:3001/api/user', {
+        .get('/api/user', {
           headers: {
             Authorization: `Bearer ${token}`,
           },

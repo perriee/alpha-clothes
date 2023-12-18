@@ -18,7 +18,7 @@ const Review = () => {
   useEffect(() => {
     // Panggil rute backend untuk mendapatkan data testimonial
     axios
-      .get('http://localhost:3001/api/testimonials')
+      .get('/api/testimonials')
       .then((response) => {
         setTestimonials(response.data);
       })
@@ -35,7 +35,7 @@ const Review = () => {
     try {
       // Kirim testimonial ke server
       await axios.post(
-        'http://localhost:3001/api/testimonial',
+        '/api/testimonial',
         {
           rating: userRating,
           text: testimonialText,
@@ -59,7 +59,7 @@ const Review = () => {
 
   const refreshTestimonials = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/api/testimonials');
+      const response = await axios.get('/api/testimonials');
       setTestimonials(response.data);
     } catch (error) {
       console.error('Error fetching testimonials:', error.message);
