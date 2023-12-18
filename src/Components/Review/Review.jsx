@@ -35,7 +35,7 @@ const Review = () => {
     try {
       // Kirim testimonial ke server
       await axios.post(
-        'http://localhost:3001/testimonial',
+        'https://alpha-clothes.vercel.app/testimonial',
         {
           rating: userRating,
           text: testimonialText,

@@ -29,7 +29,7 @@ export const Register = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:3001/register', {
+      const response = await axios.post('https://alpha-clothes.vercel.app/register', {
         fullName,
         email,
         password,
